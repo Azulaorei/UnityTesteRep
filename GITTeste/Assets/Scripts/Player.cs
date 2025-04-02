@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
     public CharacterController player;
     public Animator anim;
     public float vel;
+    public float velRun;
     private Vector3 Direcao;
 
     // Camera:
@@ -36,7 +37,6 @@ public class Player : MonoBehaviour
 
         Movimento(visao, anglo);
     }
-
 
 
     private void Movimento(float visao, float anglo)
