@@ -1,4 +1,5 @@
 using System;
+using UnityEditor;
 using UnityEngine;
 using static UnityEditor.Experimental.GraphView.GraphView;
 
@@ -13,6 +14,13 @@ public class Player : MonoBehaviour
     public Transform camera;
     public float suavizarCamera;
     private float velocidadeRotacao;
+
+
+
+    void Start()
+    {
+        Cursor.visible = false;    
+    }
 
 
 
