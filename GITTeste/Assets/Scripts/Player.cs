@@ -36,7 +36,28 @@ public class Player : MonoBehaviour
         float anglo = Mathf.SmoothDampAngle(transform.eulerAngles.y, visao, ref velocidadeRotacao, suavizarCamera); // Suaviza a rotação para transição suave
 
         Movimento(visao, anglo);
+        Correr(visao, anglo);
     }
+
+
+
+    private void Correr(float visao, float anglo)
+    {
+        if (Input.GetKey(KeyCode.LeftShift) && Direcao.magnitude >= 0.1f)
+        {
+            transform.rotation = Quaternion.Euler(0, anglo, 0);
+            Vector3 novaDirecao = Quaternion.Euler(0, visao, 0) * Vector3.forward;
+
+            player.Move(novaDirecao * velRun * Time.deltaTime);
+            anim.SetBool("Correr", true);
+        }
+
+        else
+        {
+            anim.SetBool("Correr", false);
+        }
+    }
+
 
 
     private void Movimento(float visao, float anglo)
