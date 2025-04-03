@@ -1063,8 +1063,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1903123048}
   anim: {fileID: 1903123046}
-  vel: 1
-  velRun: 4
+  vel: 0.8
+  velRun: 5
   camera: {fileID: 1187293758}
   suavizarCamera: 0.1
 --- !u!1660057539 &9223372036854775807
