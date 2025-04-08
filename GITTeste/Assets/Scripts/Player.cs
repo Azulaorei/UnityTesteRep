@@ -12,7 +12,7 @@ public class Player : MonoBehaviour
     private Vector3 Direcao;
 
     // Camera:
-    public Transform camera;
+    public Transform cam;
     public float suavizarCamera;
     private float velocidadeRotacao;
 
@@ -28,28 +28,24 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        float x = Input.GetAxisRaw("Horizontal");
-        float z = Input.GetAxisRaw("Vertical");
+        float x = Input.GetAxis("Horizontal");
+        float z = Input.GetAxis("Vertical");
         Direcao = new Vector3(x, 0, z);
 
-        float visao = Mathf.Atan2(Direcao.x, Direcao.z) * Mathf.Rad2Deg + camera.eulerAngles.y; // Calcula o ângulo de direção:
-        float anglo = Mathf.SmoothDampAngle(transform.eulerAngles.y, visao, ref velocidadeRotacao, suavizarCamera); // Suaviza a rotação para transição suave
+        Direcao = cam.transform.TransformDirection(Direcao);
+        Direcao.y = 0;
 
-        Movimento(visao, anglo);
+        Movimento();
     }
 
 
-    private void Movimento(float visao, float anglo)
+    private void Movimento()
     {
         if (Direcao.magnitude >= 0.1f)
         {
-            // Aplica a rotação suavizada ao personagem:
-            transform.rotation = Quaternion.Euler(0, anglo, 0);
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(Direcao), Time.deltaTime * 10);
 
-            // Calcula nova direção com rotação aplicada.
-            Vector3 novaDirecao = Quaternion.Euler(0, visao, 0) * Vector3.forward;
-
-            player.Move(novaDirecao * vel * Time.deltaTime);
+            player.Move(Direcao * vel * Time.deltaTime);
             anim.SetBool("Andar", true);
         }
 
