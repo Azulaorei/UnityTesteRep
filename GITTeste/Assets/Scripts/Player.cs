@@ -16,13 +16,18 @@ public class Player : MonoBehaviour
     public float suavizarCamera;
     private float velocidadeRotacao;
 
+    // Pulo:
+    public float alturaPulo;
+    public float gravidade = -19.63f;
+    private Vector3 forcaY;
 
 
-    void Start()
+    private void Awake()
     {
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
     }
+
 
 
 
@@ -37,6 +42,14 @@ public class Player : MonoBehaviour
 
         Movimento(visao, anglo);
         Correr(visao, anglo);
+        Pulo();
+    }
+
+
+
+    private void Pulo()
+    {
+        throw new NotImplementedException();
     }
 
 
