@@ -6,6 +6,7 @@ public class Player : MonoBehaviour
 {
     public CharacterController player;
     public Animator anim;
+    public LayerMask cenario;
     public float vel;
     public float velRun;
     private Vector3 Direcao;
@@ -17,19 +18,15 @@ public class Player : MonoBehaviour
 
     // Pulo:
     public float alturaPulo;
-    public float gravidade = -19.63f;
+    public Transform groundCheck;
+    public float gravidade;
     private Vector3 forcaY;
-
-
-
 
     void Start()
     {
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
     }
-
-
 
     void Update()
     {
@@ -40,33 +37,25 @@ public class Player : MonoBehaviour
         float visao = Mathf.Atan2(Direcao.x, Direcao.z) * Mathf.Rad2Deg + camera.eulerAngles.y; // Calcula o ângulo de direção:
         float anglo = Mathf.SmoothDampAngle(transform.eulerAngles.y, visao, ref velocidadeRotacao, suavizarCamera); // Suaviza a rotação para transição suave
 
-        // Gravidade no Player:
-        forcaY.y += gravidade * Time.deltaTime;
-        player.Move(forcaY * Time.deltaTime);
-
-
         Movimento(visao, anglo);
         Correr(visao, anglo);
         Controle();
     }
 
-
-
     private void Controle()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        bool isGrounded = Physics.CheckSphere(groundCheck.position, 0.3f, cenario);
+
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
-            anim.SetBool("Pular", true);
-            forcaY.y = MathF.Sqrt(alturaPulo * -2 * gravidade);
+            anim.SetTrigger("Pular");
+            forcaY.y = MathF.Sqrt(-2f * alturaPulo * gravidade);
         }
 
-        else
-        {
-            anim.SetBool("Pular", false);
-        }
+        // Gravidade no Player:
+        forcaY.y += gravidade * Time.deltaTime;
+        player.Move(forcaY * Time.deltaTime);
     }
-
-
 
     private void Correr(float visao, float anglo)
     {
@@ -84,8 +73,6 @@ public class Player : MonoBehaviour
             anim.SetBool("Correr", false);
         }
     }
-
-
 
     private void Movimento(float visao, float anglo)
     {
