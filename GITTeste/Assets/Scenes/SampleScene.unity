@@ -601,6 +601,8 @@ MonoBehaviour:
   velRun: 6
   camera: {fileID: 330585546}
   suavizarCamera: 0.1
+  alturaPulo: 3
+  gravidade: -19.63
 --- !u!143 &877498593
 CharacterController:
   m_ObjectHideFlags: 0

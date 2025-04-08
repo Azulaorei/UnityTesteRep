@@ -1,7 +1,6 @@
 using System;
 using UnityEditor;
 using UnityEngine;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class Player : MonoBehaviour
 {
@@ -22,12 +21,13 @@ public class Player : MonoBehaviour
     private Vector3 forcaY;
 
 
-    private void Awake()
+
+
+    void Start()
     {
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
     }
-
 
 
 
@@ -40,16 +40,30 @@ public class Player : MonoBehaviour
         float visao = Mathf.Atan2(Direcao.x, Direcao.z) * Mathf.Rad2Deg + camera.eulerAngles.y; // Calcula o ângulo de direção:
         float anglo = Mathf.SmoothDampAngle(transform.eulerAngles.y, visao, ref velocidadeRotacao, suavizarCamera); // Suaviza a rotação para transição suave
 
+        // Gravidade no Player:
+        forcaY.y += gravidade * Time.deltaTime;
+        player.Move(forcaY * Time.deltaTime);
+
+
         Movimento(visao, anglo);
         Correr(visao, anglo);
-        Pulo();
+        Controle();
     }
 
 
 
-    private void Pulo()
+    private void Controle()
     {
-        throw new NotImplementedException();
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            anim.SetBool("Pular", true);
+            forcaY.y = MathF.Sqrt(alturaPulo * -2 * gravidade);
+        }
+
+        else
+        {
+            anim.SetBool("Pular", false);
+        }
     }
 
 
