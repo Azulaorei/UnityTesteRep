@@ -21,6 +21,9 @@ public class Player : MonoBehaviour
     public Transform groundCheck;
     public float gravidade;
     private Vector3 forcaY;
+    public bool tempoPulo;
+
+
 
     void Start()
     {
@@ -42,11 +45,19 @@ public class Player : MonoBehaviour
         Controle();
     }
 
+
+
+    public void TempoPulo(bool liberarPulo)
+    {
+        tempoPulo = liberarPulo;
+    }
+
+
     private void Controle()
     {
         bool isGrounded = Physics.CheckSphere(groundCheck.position, 0.3f, cenario);
 
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        if (Input.GetKeyDown(KeyCode.Space) & isGrounded & tempoPulo == false)
         {
             anim.SetTrigger("Pular");
             forcaY.y = MathF.Sqrt(-2f * alturaPulo * gravidade);

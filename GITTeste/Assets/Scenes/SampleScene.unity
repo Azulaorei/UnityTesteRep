@@ -423,7 +423,7 @@ GameObject:
   - component: {fileID: 564119244}
   - component: {fileID: 564119243}
   - component: {fileID: 564119242}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -715,6 +715,7 @@ MonoBehaviour:
   alturaPulo: 3
   groundCheck: {fileID: 1856929544}
   gravidade: -19
+  tempoPulo: 0
 --- !u!143 &877498593
 CharacterController:
   m_ObjectHideFlags: 0
