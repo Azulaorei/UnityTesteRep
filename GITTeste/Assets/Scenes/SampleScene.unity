@@ -708,7 +708,7 @@ MonoBehaviour:
   cenario:
     serializedVersion: 2
     m_Bits: 8
-  vel: 0.7
+  vel: 0.3
   velRun: 6
   camera: {fileID: 330585546}
   suavizarCamera: 0.1
@@ -735,12 +735,12 @@ CharacterController:
   m_Enabled: 1
   serializedVersion: 3
   m_Height: 1.74
-  m_Radius: 0.23
+  m_Radius: 0.16
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0.94, z: 0}
+  m_Center: {x: 0, y: 0.94, z: 0.02}
 --- !u!1 &1187293752
 GameObject:
   m_ObjectHideFlags: 0
@@ -997,7 +997,7 @@ GameObject:
   - component: {fileID: 1660470905}
   - component: {fileID: 1660470904}
   m_Layer: 0
-  m_Name: Audio Source
+  m_Name: Musica
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1013,8 +1013,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 97c7caa55cbb32243a441f4dd1ae26c1, type: 3}
-  m_Resource: {fileID: 8300000, guid: 97c7caa55cbb32243a441f4dd1ae26c1, type: 3}
+  m_audioClip: {fileID: 8300000, guid: dead060a72da85042a30298d36a8107a, type: 3}
+  m_Resource: {fileID: 8300000, guid: dead060a72da85042a30298d36a8107a, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.144
   m_Pitch: 1

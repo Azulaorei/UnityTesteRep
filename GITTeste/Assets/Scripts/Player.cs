@@ -63,6 +63,7 @@ public class Player : MonoBehaviour
             forcaY.y = MathF.Sqrt(-2f * alturaPulo * gravidade);
         }
 
+
         // Gravidade no Player:
         forcaY.y += gravidade * Time.deltaTime;
         player.Move(forcaY * Time.deltaTime);
